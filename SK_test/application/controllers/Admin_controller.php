@@ -269,19 +269,27 @@ class Admin_controller extends MY_Controller
 
             $user_id = $get_invoice->user_id;
             $get_profile = $this->adminM->find_client($user_id);
-
+            $date = date('d.m.Y');
+            $text = wordwrap($get_invoice->description, 5, "\n", false);
             $dompdf->loadHtml("<h1>Invoice PDF file</h1>
-            <h2>Title: $get_invoice->title</h2>
-            <h3>Identification number: $get_invoice->identification_number</h3>
-            <p>Client: $get_profile->firstname  $get_profile->lastname</p>
-            <i>Sum: $get_invoice->sum</i>
-            <p>Identifikacne cislo organizacie: $get_invoice->ico</p>
-            <p>Danove identifikacne cislo: $get_invoice->dic</p>
-            <p>Identifikacne cislo pre dan: $get_invoice->icdph</p>
-            <p>Description: $get_invoice->description</p>");
+            <h2><b>Title:</b> $get_invoice->title</h2>
+            <h3><b>Identification number:</b> $get_invoice->identification_number</h3>
+            <p><b>ICO:</b> $get_invoice->ico
+            <b>  DIC:</b> $get_invoice->dic
+            <b>  IC DPH:</b> $get_invoice->icdph</p>
+            <p style='margin-left: 500px; padding-top: -50px'><strong>Client:</strong> $get_profile->firstname  $get_profile->lastname<br>
+            <b>Email:</b> $get_profile->email</p>
+            <p><b>Sum: </b>$get_invoice->sum</p>
+            <p style='border: solid; width: 400px; padding-top: 10px; padding-left: 10px; padding-bottom: 10px; padding-right: 10px'><b>Description: </b>$text</p>
+            <ul style=\"list-style-type:none; position:fixed; bottom:50px;\">
+              <li>Date: $date</li>
+              <li style='margin-left: 400px; padding-top: -40px'>Sign: _________________________________</li>
+            </ul>");
+
 
             // (Optional) Setup the paper size and orientation
-            $dompdf->setPaper('A4', 'landscape');
+            $dompdf->setPaper('A4', 'portrait');
+            //$dompdf->set_paper(DEFAULT_PDF_PAPER_SIZE, 'portrait');
 
             // Render the HTML as PDF
             $dompdf->render();
