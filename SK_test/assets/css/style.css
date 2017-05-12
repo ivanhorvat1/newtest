@@ -1,0 +1,26 @@
+.navbar-default {
+    background: url('../images/nav.jpg');
+    border-color: #E7E7E7;
+}
+.collapse .navbar-nav > li > a {
+    color: white;
+}
+.collapse .navbar-nav > li > a:hover,
+.collapse .navbar-nav > li > a:focus {
+    color: red;
+}
+.collapse .navbar-nav > .active > a,
+.collapse .navbar-nav > .active > a:hover,
+.collapse .navbar-nav > .active > a:focus {
+    color: #555;
+    background-color: #E7E7E7;
+}
+.dash{
+    margin-top: 100px;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #ccffff;
+}
+.bg-primary, .bg-primary:hover, .bg-primary:active, .bg-primary:visited {
+    background-color: dodgerblue !important;
+}
